@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CozyCafe - Согревайте сердце чашечкой счастья!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --header-bg: rgba(225, 174, 82, 0.5);
+            --title-color: #5B673F;
+            --subtitle-color: #A36C4E;
+            --section-title: #5C6641;
+            --section-text: #A36C4E;
+            --nav-color: #5B673F;
+            --background: #EEE8E3;
+            --light-text: #f8f8f8;
+            --container-width: 92%;
+            --box-padding: 2.5rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--section-text);
+            background-color: var(--background);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+        }
+        
+        /* Основные контейнеры */
+        .header-box,
+        .vacancy-card,
+        .download-section,
+        .section-container {
+            width: var(--container-width);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+            padding: var(--box-padding);
+        }
+        
+        /* Хедер с прямоугольником */
+        .header-container {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .header-box {
+            background-color: var(--header-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 100px;
+            height: 100px;
+            background: url('images/logoresizenew.png') no-repeat center center/contain;
+            z-index: 10;
+        }
+        
+        .header-content {
+            flex: 1;
+            padding: 0 2rem;
+            margin-top: 60px;
+        }
+        
+        .header-title {
+            color: var(--title-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .header-subtitle {
+            color: var(--subtitle-color);
+            font-size: 1.5rem;
+        }
+        
+        .header-image {
+            width: 300px;
+            height: 300px;
+            background: url('images/header.png') no-repeat center center/contain;
+        }
+        
+        /* Якорные ссылки в хедере */
+        .header-anchors {
+            position: absolute;
+            top: 35px;
+            right: 35px;
+            display: flex;
+            gap: 1.5rem;
+            z-index: 10;
+        }
+        
+        .header-anchors a {
+            color: var(--nav-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 1.05rem;
+        }
+        
+        .header-anchors a:hover {
+            text-decoration: underline;
+            color: var(--subtitle-color);
+        }
+        
+        /* Секции с чередованием */
+        .section-container {
+            background-color: rgba(225, 174, 82, 0.1);
+            margin: 3rem auto;
+        }
+        
+        .section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section:nth-child(even) .section-content {
+            order: -1;
+        }
+        
+        .section-image {
+            height: 350px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .section-title {
+            color: var(--section-title);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .section-text {
+            color: var(--section-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Секция загрузки */
+        .download-section {
+            text-align: center;
+            background-color: rgba(225, 174, 82, 0.1);
+            margin: 3rem auto;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--nav-color);
+            color: var(--light-text);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            min-width: 220px;
+        }
+        
+        .download-btn:hover {
+            background: var(--title-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        
+        /* Стили для раздела вакансий */
+        .vacancy-card {
+            background-color: rgba(225, 174, 82, 0.1);
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        .vacancy-content {
+            flex: 1;
+        }
+        
+        .vacancy-title {
+            color: var(--section-title);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .vacancy-subtitle {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vacancy-list-title {
+            font-weight: 500;
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--section-title);
+        }
+        
+        .vacancy-list {
+            padding-left: 1.5rem;
+        }
+        
+        .vacancy-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .vacancy-image {
+            width: 300px;
+            height: 300px;
+            background: url('images/previewpicturefive.png') no-repeat center center/contain;
+            align-self: center;
+        }
+        
+        footer {
+            background: var(--nav-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* Адаптивные стили */
+        @media (max-width: 1200px) {
+            :root {
+                --container-width: 94%;
+                --box-padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            :root {
+                --container-width: 96%;
+                --box-padding: 1.8rem;
+            }
+            
+            .header-box {
+                flex-direction: column;
+                text-align: center;
+                min-height: 350px;
+            }
+            
+            .header-content {
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+                margin-top: 80px;
+            }
+            
+            .header-image {
+                margin-top: 1rem;
+                width: 250px;
+                height: 250px;
+            }
+            
+            .section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .section:nth-child(even) .section-content {
+                order: 0;
+            }
+            
+            .section-image {
+                height: 250px;
+            }
+            
+            .header-anchors {
+                position: static;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin: 1rem 0;
+                padding: 0;
+                gap: 1rem;
+                top: auto;
+                right: auto;
+            }
+            
+            .vacancy-card {
+                flex-direction: column;
+            }
+            
+            .vacancy-image {
+                width: 100%;
+                height: 250px;
+                margin-top: 1.5rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --box-padding: 1.5rem;
+            }
+            
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .header-container {
+                height: auto;
+                min-height: auto;
+                padding: 1rem;
+            }
+            
+            .header-box {
+                min-height: 300px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .header-anchors {
+                gap: 0.8rem;
+            }
+            
+            .header-anchors a {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            :root {
+                --container-width: 98%;
+                --box-padding: 1.2rem;
+            }
+            
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .header-box {
+                padding: 1rem;
+            }
+            
+            .logo {
+                width: 80px;
+                height: 80px;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .header-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .section-text {
+                font-size: 1rem;
+            }
+            
+            .vacancy-card {
+                padding: 1.2rem;
+            }
+            
+            .header-anchors {
+                gap: 0.5rem;
+            }
+            
+            .header-anchors a {
+                font-size: 0.9rem;
+                padding: 0.3rem;
+            }
+            
+            .download-btn {
+                min-width: 200px;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Хедер с прямоугольником -->
+    <div class="header-container">
+        <div class="header-box">
+            <div class="header-anchors">
+                <a href="#about">О нас</a>
+                <a href="#policy">Наша политика</a>
+                <a href="#coffee">Наш кофе</a>
+                <a href="#vacancies">Вакансии</a>
+                <a href="#download">Приложение</a>
+            </div>
+            <div class="header-content">
+                <h1 class="header-title">CozyCafe</h1>
+                <p class="header-subtitle">Согревайте сердце чашечкой счастья!</p>
+            </div>
+            <div class="header-image"></div>
+        </div>
+    </div>
+
+    <!-- Секции с чередованием -->
+    <div class="section-container" id="about">
+        <section class="section">
+            <div class="section-image" style="background-image: url('images/cafe.png');"></div>
+            <div class="section-content">
+                <h2 class="section-title">О нас</h2>
+                <p class="section-text">Добро пожаловать в CozyCafe - место, где каждый найдет свой идеальный кофе и уютную атмосферу. Мы создаем пространство, где можно отдохнуть, поработать или встретиться с друзьями за чашечкой ароматного кофе, а также вкусно перекусить!</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-container" id="policy">
+        <section class="section">
+            <div class="section-image" style="background-image: url('images/collective.png');"></div>
+            <div class="section-content">
+                <h2 class="section-title">Наша политика</h2>
+                <p class="section-text">Мы стремимся создать атмосферу взаимопомощи и уважения в нашем коллективе. Наша политика основывается на честности и открытости, мы ценим каждого сотрудника и поддерживаем их профессиональное развитие, чтобы вместе строить успешное будущее нашей кофейни.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="section-container" id="coffee">
+        <section class="section">
+            <div class="section-image" style="background-image: url('images/coffeebeans.png');"></div>
+            <div class="section-content">
+                <h2 class="section-title">Наш кофе</h2>
+                <p class="section-text">В нашей кофейне мы гордимся тем, что используем только отборные зерна арабики с лучших плантаций мира. Каждое зерно обладает уникальным вкусом и ароматом, и мы тщательно отбираем их, чтобы создать для вас идеальный кофе — от классического эспрессо до насыщенных латте и капучино.</p>
+                <p class="section-text">Наши бариста проходят специальное обучение и знают, как раскрыть весь потенциал кофейных зерен, чтобы вы могли насладиться идеальным вкусом.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Новый раздел "Вакансии" -->
+    <div class="section-container" id="vacancies">
+        <section>
+            <h2 class="section-title">Вакансии</h2>
+            <div class="vacancy-card">
+                <div class="vacancy-content">
+                    <h3 class="vacancy-title">Бариста</h3>
+                    <p class="vacancy-subtitle">Приглашаем в нашу дружную команду бариста!</p>
+                    
+                    <h4 class="vacancy-list-title">Обязанности:</h4>
+                    <ul class="vacancy-list">
+                        <li>Приготовление кофейных напитков и других напитков меню в соответствии с высокими стандартами качества</li>
+                        <li>Работа с кассой и ведение кассовой отчетности</li>
+                        <li>Дружелюбное и профессиональное обслуживание гостей, создание теплой атмосферы</li>
+                        <li>Открытие и закрытие смены, подготовка рабочего места</li>
+                        <li>Контроль качества продукции и соблюдение санитарных норм</li>
+                        <li>Поддержание чистоты и порядка в зале и за барной стойкой</li>
+                    </ul>
+                    
+                    <h4 class="vacancy-list-title">Требования:</h4>
+                    <ul class="vacancy-list">
+                        <li>Вежливость, ответственность и стрессоустойчивость</li>
+                        <li>Знание кофейного меню и основ приготовления кофейных напитков</li>
+                        <li>Умение находить подход к разным гостям и выходить из конфликтных ситуаций</li>
+                        <li>Опрятный внешний вид и соблюдение дресс-кода</li>
+                        <li>Опыт работы бариста приветствуется, но мы готовы обучить мотивированных кандидатов</li>
+                        <li>Грамотная речь и коммуникативные навыки</li>
+                    </ul>
+                    
+                    <p>Если вы считаете, что прекрасно справитесь с обязанностями и соответствуете требованиям, тогда очень ждем вас на собеседовании!</p>
+                    <h4 class="vacancy-list-title">Для записи на собеседование свяжитесь с нами: +7 (927) 403-88-22.</h4>
+                </div>
+                <div class="vacancy-image"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Секция загрузки -->
+    <div class="download-section" id="download">
+        <h2 class="section-title">Наше приложение</h2>
+        <p class="section-text">Скачайте наше приложение для изучения теоретического материала на должность "Бариста"! Оно поможет вам изучать необходимый материал в своем темпе, проходить тестирования, отслеживать собственный прогресс, а также изучать дополнительные материалы!</p>
+        <p class="section-text">Доступно для Android и Windows.</p>
+        <div class="download-buttons">
+            <a href="setup cozycafe.exe" class="download-btn" download>
+                <img src="images/notebook.png" alt="Windows">
+                Скачать для Windows
+            </a>
+            <a href="cozycafe-app.apk" class="download-btn" download>
+                <img src="images/phone.png" alt="Android">
+                Скачать для Android
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© <span id="year"></span> CozyCafe. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Добавляем текущий год в футер
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
